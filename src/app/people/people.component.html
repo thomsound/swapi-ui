@@ -1,0 +1,9 @@
+<h2>THE PEOPLE</h2>
+<ng-container *ngFor="let person of (characters | async) | keyvalue">
+    <div>{{person.value.name}}</div>
+    <ul>
+        <li>species: {{person.value.species}}</li>
+        <li>homeworld: {{person.value.homeworld}}</li>
+        <li>films: {{person.value.films}}</li>
+    </ul>
+</ng-container>

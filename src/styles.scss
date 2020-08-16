@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+*[ng-reflect-router-link] {
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+}
