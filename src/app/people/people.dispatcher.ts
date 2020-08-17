@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from "@ngrx/store";
-import { loadCharactersStartedAction } from "./people.actions";
+import { loadCharactersStartedAction, loadSingleCharacterStartedAction } from "./people.actions";
 
 @Injectable()
 export class PeopleDispatcher {
@@ -8,7 +8,11 @@ export class PeopleDispatcher {
         private store: Store
     ) { }
 
-    loadCharacters(page?: number): void {
-        this.store.dispatch(loadCharactersStartedAction({}) );
+    loadCharacters(page?: string): void {
+        this.store.dispatch(loadCharactersStartedAction(page ? { page } : {}) );
+    }
+
+    loadCharacterById(id: string): void {
+        this.store.dispatch(loadSingleCharacterStartedAction({ id }));
     }
 }

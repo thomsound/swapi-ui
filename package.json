@@ -23,6 +23,9 @@
     "@ngrx/router-store": "^10.0.0",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^10.0.0",
+    "font-awesome": "^4.7.0",
+    "ngx-icons": "^0.3.0",
+    "ngx-sharebuttons": "^8.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

@@ -1,0 +1,15 @@
+.people-item {
+    display: inline-flex;
+    flex-direction: column;
+    border: solid 2px gold;
+    border-radius: 12px;
+    padding: 6px;
+
+    & h3 {
+        text-align: center;
+    }
+
+    &__icon-menu {
+        align-self: center;
+    }
+}

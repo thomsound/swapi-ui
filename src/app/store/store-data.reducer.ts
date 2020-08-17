@@ -28,5 +28,12 @@ export function reducer(state: StoreData | undefined, action: Action) {
 export const selectStoreData = createFeatureSelector<ApplicationState, StoreData>('storeData');
 
 export const selectPeopleListContainer = createSelector(selectStoreData, state => state.people);
+export const selectFilmListContainer = createSelector(selectStoreData, state => state.films);
+export const selectStarshipsListContainer = createSelector(selectStoreData, state => state.starships);
+export const selectVehiclesListContainer = createSelector(selectStoreData, state => state.vehicles);
+export const selectSpeciesListContainer = createSelector(selectStoreData, state => state.species);
+export const selectPlanetsListContainer = createSelector(selectStoreData, state => state.planets);
 
 export const selectPeopleEntries = createSelector(selectPeopleListContainer, state => state.entries);
+
+export const selectCharacterById = (id: string) => createSelector(selectPeopleEntries, peopleEntries => peopleEntries[ id ]);

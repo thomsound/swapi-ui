@@ -1,0 +1,18 @@
+<div class="people-item">
+    <h3>{{item.name}}</h3>
+    <app-icon-menu
+        class="people-item__icon-menu"
+        [config]="iconMenuConfig"
+        (itemClicked)="iconMenuClick($event)"
+        (itemHovered)="iconMenuClick($event)"
+    ></app-icon-menu>
+    <ul>
+        <li>height: {{ item.height || 'n/a'}}</li>
+        <li>mass: {{ item.mass || 'n/a'}}</li>
+        <li>hair color: {{ item.hair_color || 'n/a'}}</li>
+        <li>skin color: {{ item.skin_color || 'n/a'}}</li>
+        <li>eye color: {{ item.eye_color || 'n/a'}}</li>
+        <li>birth year: {{ item.birth_year || 'n/a'}}</li>
+        <li>gender: {{ item.gender || 'n/a'}}</li>
+    </ul>
+</div>

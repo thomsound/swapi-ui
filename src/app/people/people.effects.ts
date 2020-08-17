@@ -5,7 +5,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { SwapiService } from '../swapi.service';
 import {
-    loadCharactersFailedAction, loadCharactersStartedAction,
+    loadCharactersFailedAction,
+    loadCharactersStartedAction,
     loadCharactersSucceededAction
 } from './people.actions';
 
@@ -13,10 +14,10 @@ import {
 export class PeopleEffects {
     loadCharacters$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
-            ofType(loadCharactersStartedAction.type),
-            mergeMap(() =>
+            ofType(loadCharactersStartedAction),
+            mergeMap(action =>
                 this.service
-                    .getCharacters()
+                    .getCharacters(action.page)
                     .pipe(
                         map((characters) => loadCharactersSucceededAction({ characters })),
                         catchError(() => of(loadCharactersFailedAction())),

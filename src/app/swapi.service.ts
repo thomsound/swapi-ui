@@ -21,8 +21,8 @@ export class SwapiService {
         return this.httpClient.get(this.baseUrl);
     }
 
-    getCharacters(): Observable<itemListContainer<Character>> {
-        return this.httpClient.get(this.baseUrl + '/people').pipe(
+    getCharacters(page?: string): Observable<itemListContainer<Character>> {
+        return this.httpClient.get(this.baseUrl + '/people', page ? { params: { page } } : {}).pipe(
             filter(res => res.hasOwnProperty('results')), // res?.results?.length > 0),
             map(res => this.parsePeople(res))
         );
@@ -31,7 +31,10 @@ export class SwapiService {
     private parsePeople(response: any): itemListContainer<Character> {
         const { count, next, previous, results } = response;
         let peopleMap: { [ key: string ]: Character } = {};
-        results.forEach(element => peopleMap[ element?.url ] = element );
+        results.forEach(element => {
+            element.homeworld = { url: element?.homeworld }
+            peopleMap[ element?.url ] = element;
+        });
         return {
             count,
             next,

@@ -1,0 +1,20 @@
+    <div class="info-menu">
+        <div class="icon-bar">
+            <ng-container *ngFor="let item of config.entries; let i = index">
+                <div
+                    class="icon-bar__item icon-bar-item"
+                    [class.active]="i == active"
+                    (click)="menuItemClicked(i)"
+                    (mouseover)="menuItemHovered(i)"
+                >
+                    <fa name="{{item.iconId}}"></fa>
+                </div>
+            </ng-container>
+            <div class="label-bar">
+                <ng-container *ngFor="let item of config.entries">
+                    <label>{{item.label || ''}}</label>
+                </ng-container>
+                <label [class.hide]="true">{{config.defaultLabel || ''}}</label>
+            </div>
+        </div>
+    </div>
