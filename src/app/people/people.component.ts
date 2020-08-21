@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Character } from '../store/character';
-import { Planet } from '../store/planet';
+import { Character, Planet } from '../store/star-wars-item';
 import { selectPeopleEntries } from '../store/store-data.reducer';
 
 @Component({

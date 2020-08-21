@@ -1,9 +1,4 @@
-import { Character } from "./character";
-import { Film } from "./film";
-import { Planet } from "./planet";
-import { Species } from "./species";
-import { Starship } from "./starship";
-import { Vehicle } from "./vehicle";
+import { Character, Film, Planet, Species, Starship, Vehicle } from './star-wars-item';
 
 export interface StoreData {
     people: itemListContainer<Character>;
@@ -22,10 +17,10 @@ export interface itemListContainer<T> {
 }
 
 export const INITIAL_STORE_DATA_STATE: StoreData = {
-    people: { count: undefined, previous: undefined, next: undefined, entries: undefined},
-    films: { count: undefined, previous: undefined, next: undefined, entries: undefined},
-    starships: { count: undefined, previous: undefined, next: undefined, entries: undefined},
-    vehicles: { count: undefined, previous: undefined, next: undefined, entries: undefined},
-    species: { count: undefined, previous: undefined, next: undefined, entries: undefined},
-    planets: { count: undefined, previous: undefined, next: undefined, entries: undefined}
+    people: { count: 0, previous: null, next: null, entries: {}},
+    films: { count: 0, previous: null, next: null, entries: {}},
+    starships: { count: 0, previous: null, next: null, entries: {}},
+    vehicles: { count: 0, previous: null, next: null, entries: {}},
+    species: { count: 0, previous: null, next: null, entries: {}},
+    planets: { count: 0, previous: null, next: null, entries: {}},
 }

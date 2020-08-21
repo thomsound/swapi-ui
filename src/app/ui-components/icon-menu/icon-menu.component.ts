@@ -8,17 +8,22 @@ import { IconMenuConfig } from './icon-menu-config';
 })
 export class IconMenuComponent {
     @Input() config: IconMenuConfig;
+    @Input() active: number;
     @Output() itemClicked = new EventEmitter<number>();
     @Output() itemHovered = new EventEmitter<number>();
 
-    active: number;
+    hover: number;
 
     menuItemHovered(idx: number) {
+        this.hover = idx;
+        if (idx < 0) return;
         this.itemHovered.emit(idx);
     }
 
     menuItemClicked(idx: number) {
+        if (this.config.entries[ idx ].disabled) return;
         this.active = idx;
+        if (idx < 0) return;
         this.itemClicked.emit(idx);
     }
 }

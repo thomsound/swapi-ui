@@ -1,3 +1,8 @@
+body {
+    background-color: #111111;
+    color: goldenrod;
+}
+
 *[ng-reflect-router-link] {
     cursor: pointer;
     transition: transform 0.3s;

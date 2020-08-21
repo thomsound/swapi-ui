@@ -13,14 +13,14 @@
         flex-direction: column;
         align-items: center;
         margin: 0 3px;
+
+        &--disabled {
+            color: grey;
+        }
     }
 
     & div:last-child {
         flex-basis: 100%;
-    }
-
-    &:hover > .label-bar label:last-child {
-        opacity: 0;
     }
 }
 
@@ -30,14 +30,8 @@
     border-radius: 6px;
     padding: 3px;
 
-    &:hover {
+    &.active {
         border-color: violet;
-
-        @for $i from 1 through 6 {
-            &:nth-child(#{$i}) ~ .label-bar label:nth-child(#{$i}) {
-                opacity: 1;
-            }
-        }
     }
 }
 
@@ -53,11 +47,10 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        opacity: 0;
         transition: opacity 0.5s;
     }
 
-    & label:last-child {
-        opacity: 1;
+    &--disabled {
+        color: grey;
     }
 }

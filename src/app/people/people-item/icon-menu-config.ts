@@ -1,26 +1,27 @@
+import { Categories } from 'src/app/category-list/categories';
 import { IconMenuConfig } from '../../ui-components/icon-menu/icon-menu-config';
 
 export const iconMenuConfig: IconMenuConfig = {
     defaultLabel: 'characteristics',
     entries: [
         {
-            label: 'species',
+            label: Categories.SPECIES,
             iconId: 'male'
         },
         {
-            label: 'homeworld',
+            label: Categories.PLANETS,
             iconId: 'star'
         },
         {
-            label: 'films',
+            label: Categories.FILMS,
             iconId: 'film'
         },
         {
-            label: 'vehicles',
+            label: Categories.VEHICLES,
             iconId: 'truck'
         },
         {
-            label: 'starships',
+            label: Categories.STARSHIPS,
             iconId: 'space-shuttle'
         },
     ]
