@@ -13,7 +13,10 @@
             </div>
         </ng-container>
         <div class="label-bar">
-            <label [class.label-bar--disabled]="hover >= 0 && config.entries[hover].disabled">
+            <label
+                *ngIf="hover >= 0"
+                [class.label-bar--disabled]="hover >= 0 && config.entries[hover].disabled"
+            >
                 {{hover >= 0
                     ? config.entries[hover].label
                     : (active >= 0

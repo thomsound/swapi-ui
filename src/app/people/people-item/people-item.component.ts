@@ -7,7 +7,6 @@ import { selectItemByUrl } from 'src/app/store/store-data.reducer';
 import { IconMenuConfig } from 'src/app/ui-components/icon-menu/icon-menu-config';
 import { Categories } from '../../category-list/categories';
 import { PeopleDispatcher } from '../people.dispatcher';
-import { iconMenuConfig } from './icon-menu-config';
 
 @Component({
     selector: 'app-people-item',
@@ -18,7 +17,7 @@ export class PeopleItemComponent {
 
     iconMenuConfig: IconMenuConfig;
     item: Character;
-    selected: number;
+    selected = -1;
 
     species$: Observable<Species>;
     homeworld$: Observable<Planet>;
@@ -88,7 +87,7 @@ export class PeopleItemComponent {
 
     iconMenuClick(idx: number) {
         this.setSelected(idx);
-        switch (iconMenuConfig.entries[idx].label) {
+        switch (this.iconMenuConfig.entries[idx].label) {
             case Categories.SPECIES:
                 this.dispatcher.loadItemByUrl(this.item.species[ 0 ]);
                 break;

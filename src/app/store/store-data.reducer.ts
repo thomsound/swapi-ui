@@ -1,5 +1,6 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import { Categories } from '../category-list/categories';
 import { loadCharactersSucceededAction } from '../people/people.actions';
 import { loadSingleItemBatchByUrlsSucceededAction, loadSingleItemByUrlSucceededAction } from './actions';
 import { ApplicationState } from './application-state';
@@ -49,9 +50,9 @@ function addSingleItemToState(state: StoreData, item: StarWarsItem) {
 }
 
 function getCategory(url: string) {
+    const categories = Object.values(Categories).map(c => c + '');
     const baseUrl = environment.apiServer + environment.apiPrefix + '/';
     const tail = url.substring(baseUrl.length - 1);
-    const categories = ['people', 'films', 'planets', 'species', 'starships', 'vehicles'];
     const category = tail.substring(0, tail.indexOf("/"));
     return categories.includes(category) ? category : null;
 }

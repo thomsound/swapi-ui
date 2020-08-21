@@ -1,0 +1,102 @@
+<ng-container [ngSwitch]="category">
+    <ng-container *ngSwitchCase="Categories.FILMS" [ngTemplateOutlet]="films"></ng-container>
+    <ng-container *ngSwitchCase="Categories.PEOPLE" [ngTemplateOutlet]="people"></ng-container>
+    <ng-container *ngSwitchCase="Categories.PLANETS" [ngTemplateOutlet]="planets"></ng-container>
+    <ng-container *ngSwitchCase="Categories.SPECIES" [ngTemplateOutlet]="species"></ng-container>
+    <ng-container *ngSwitchCase="Categories.STARSHIPS" [ngTemplateOutlet]="starships"></ng-container>
+    <ng-container *ngSwitchCase="Categories.VEHICLES" [ngTemplateOutlet]="vehicles"></ng-container>
+</ng-container>
+
+<ng-template #people>
+    <h4>characteristics</h4>
+    <ul>
+        <li>height: {{ item.height || 'n/a'}}</li>
+        <li>mass: {{ item.mass || 'n/a'}}</li>
+        <li>hair color: {{ item.hair_color || 'n/a'}}</li>
+        <li>skin color: {{ item.skin_color || 'n/a'}}</li>
+        <li>eye color: {{ item.eye_color || 'n/a'}}</li>
+        <li>birth year: {{ item.birth_year || 'n/a'}}</li>
+        <li>gender: {{ item.gender || 'n/a'}}</li>
+    </ul>
+</ng-template>
+
+<ng-template #species>
+    <h4>species</h4>
+    <ul>
+        <li>name: {{ item.name || 'n/a' }}</li>
+        <li>classification: {{ item.classification || 'n/a' }}</li>
+        <li>designation: {{ item.designation || 'n/a' }}</li>
+        <li>language: {{ item.language || 'n/a' }}</li>
+        <li>ø lifespang: {{ item.average_lifespan || 'n/a' }}</li>
+        <li>ø height: {{ item.average_height || 'n/a' }}</li>
+        <li>eye colors: {{ item.eye_colors || 'n/a' }}</li>
+        <li>hair colors: {{ item.hair_colors || 'n/a' }}</li>
+        <li>skin colors: {{ item.skin_colors || 'n/a' }}</li>
+    </ul>
+</ng-template>
+
+<ng-template #planets>
+    <h4>planets</h4>
+    <ul>
+        <li>name: {{ item.name || 'n/a' }}</li>
+        <li>rotation period: {{ item.rotation_period || 'n/a' }}</li>
+        <li>orbital period: {{ item.orbital_period || 'n/a' }}</li>
+        <li>diameter: {{ item.diameter || 'n/a' }}</li>
+        <li>climate: {{ item.climate || 'n/a' }}</li>
+        <li>gravity: {{ item.gravity || 'n/a' }}</li>
+        <li>terrain: {{ item.terrain || 'n/a' }}</li>
+        <li>surface water: {{ item.surface_water || 'n/a' }}</li>
+        <li>population: {{ item.population || 'n/a' }}</li>
+    </ul>
+</ng-template>
+
+<ng-template #films>
+    <h4>films</h4>
+    <ul>
+        <li>title: {{ item.title || 'n/a' }}</li>
+        <li>episode: {{ item.episode_id || 'n/a' }}</li>
+        <li>director: {{ item.director || 'n/a' }}</li>
+        <li>producer: {{ item.producer || 'n/a' }}</li>
+        <li>release date: {{ item.release_date || 'n/a' }}</li>
+    </ul>
+    <ng-container *ngIf="item.opening_crawl && item.opening_crawl.trim()">
+        <h5>opening crawl</h5>
+        <p>{{ item.opening_crawl }}</p>
+    </ng-container>
+</ng-template>
+
+<ng-template #vehicles>
+    <h4>vehicles</h4>
+    <ul>
+        <li>name: {{ item.name || 'n/a' }}</li>
+        <li>model: {{ item.model || 'n/a' }}</li>
+        <li>manufacturer: {{ item.manufacturer || 'n/a' }}</li>
+        <li>cost in credits: {{ item.cost_in_credits || 'n/a' }}</li>
+        <li>length: {{ item.length || 'n/a' }}</li>
+        <li>max atmosphering speed: {{ item.max_atmosphering_speed || 'n/a' }}</li>
+        <li>crew: {{ item.crew || 'n/a' }}</li>
+        <li>passengers: {{ item.passengers || 'n/a' }}</li>
+        <li>cargo capacity: {{ item.cargo_capacity || 'n/a' }}</li>
+        <li>consumables: {{ item.consumables || 'n/a' }}</li>
+        <li>vehicle class: {{ item.vehicle_class || 'n/a' }}</li>
+    </ul>
+</ng-template>
+
+<ng-template #starships>
+    <h4>starships</h4>
+    <ul>
+        <li>name: {{ item.name || 'n/a' }}</li>
+        <li>model: {{ item.model || 'n/a' }}</li>
+        <li>manufacturer: {{ item.manufacturer || 'n/a' }}</li>
+        <li>cost in credits: {{ item.cost_in_credits || 'n/a' }}</li>
+        <li>length: {{ item.length || 'n/a' }}</li>
+        <li>max atmosphering speed: {{ item.max_atmosphering_speed || 'n/a' }}</li>
+        <li>crew: {{ item.crew || 'n/a' }}</li>
+        <li>passengers: {{ item.passengers || 'n/a' }}</li>
+        <li>cargo capacity: {{ item.cargo_capacity || 'n/a' }}</li>
+        <li>consumables: {{ item.consumables || 'n/a' }}</li>
+        <li>hyperdrive rating: {{ item.hyperdrive_rating || 'n/a' }}</li>
+        <li>MGLT: {{ item.MGLT || 'n/a' }}</li>
+        <li>starship class: {{ item.starship_class || 'n/a' }}</li>
+    </ul>
+</ng-template>

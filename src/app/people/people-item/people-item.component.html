@@ -7,65 +7,31 @@
         (itemClicked)="iconMenuClick($event)"
     ></app-icon-menu>
 
-    <ul>
-        <li>height: {{ item.height || 'n/a'}}</li>
-        <li>mass: {{ item.mass || 'n/a'}}</li>
-        <li>hair color: {{ item.hair_color || 'n/a'}}</li>
-        <li>skin color: {{ item.skin_color || 'n/a'}}</li>
-        <li>eye color: {{ item.eye_color || 'n/a'}}</li>
-        <li>birth year: {{ item.birth_year || 'n/a'}}</li>
-        <li>gender: {{ item.gender || 'n/a'}}</li>
-    </ul>
-    <ng-container *ngIf="(species$ | async) as species">
-        SPECIES
-        <ul>
-            <li>name: {{ species.name || 'n/a' }}</li>
-            <li>classification: {{ species.classification || 'n/a' }}</li>
-            <li>designation: {{ species.designation || 'n/a' }}</li>
-            <li>language: {{ species.language || 'n/a' }}</li>
-            <li>ø lifespang: {{ species.average_lifespan || 'n/a' }}</li>
-            <li>ø height: {{ species.average_height || 'n/a' }}</li>
-            <li>eye colors: {{ species.eye_colors || 'n/a' }}</li>
-            <li>hair colors: {{ species.hair_colors || 'n/a' }}</li>
-            <li>skin colors: {{ species.skin_colors || 'n/a' }}</li>
-        </ul>
-    </ng-container>
-    <ng-container *ngIf="(homeworld$ | async) as homeworld">
-        HOMEWORLD
-        <ul>
-            <li>name: {{ homeworld.name || 'n/a' }}</li>
-            <li>rotation period: {{ homeworld.rotation_period || 'n/a' }}</li>
-            <li>orbital period: {{ homeworld.orbital_period || 'n/a' }}</li>
-            <li>diameter: {{ homeworld.diameter || 'n/a' }}</li>
-            <li>climate: {{ homeworld.climate || 'n/a' }}</li>
-            <li>gravity: {{ homeworld.gravity || 'n/a' }}</li>
-            <li>terrain: {{ homeworld.terrain || 'n/a' }}</li>
-            <li>surface water: {{ homeworld.surface_water || 'n/a' }}</li>
-            <li>population: {{ homeworld.population || 'n/a' }}</li>
-        </ul>
-    </ng-container>
-    <ng-container *ngIf="(films$ | async) as films">
-        FILMS
-        <ul>
-            <ng-container *ngFor="let film of films">
-                <li>{{film.title}}</li>
-            </ng-container>
-        </ul>
-    </ng-container>
-    <ng-container *ngIf="(vehicles$ | async) as vehicles">
-        VEHICLES
-        <ul>
-            <ng-container *ngFor="let vehicle of vehicles">
-                <li>{{vehicle.name}}</li>
-            </ng-container>
-        </ul>
-    </ng-container>
-    <ng-container *ngIf="(starships$ | async) as starships">
-        STARSHIPS
-        <ul>
-            <ng-container *ngFor="let starship of starships">
-                <li>{{starship.name}}</li>
-            </ng-container>
-        </ul>
+    <app-specs-list *ngIf="selected < 0" [item]="item"></app-specs-list>
+
+    <ng-container *ngIf="selected >= 0 && iconMenuConfig.entries[selected].label as label">
+        <app-specs-list *ngIf="label === 'species'" [item]="species$ | async"></app-specs-list>
+        <app-specs-list *ngIf="label === 'planets'" [item]="homeworld$ | async"></app-specs-list>
+        <ng-container *ngIf="label === 'films' && (films$ | async) as films">
+            <ul>
+                <ng-container *ngFor="let film of films">
+                    <li>{{film.title}}</li>
+                </ng-container>
+            </ul>
+        </ng-container>
+        <ng-container *ngIf="label === 'vehicles' && (vehicles$ | async) as vehicles">
+            <ul>
+                <ng-container *ngFor="let vehicle of vehicles">
+                    <li>{{vehicle.name}}</li>
+                </ng-container>
+            </ul>
+        </ng-container>
+        <ng-container *ngIf="label === 'starships' && (starships$ | async) as starships">
+            <ul>
+                <ng-container *ngFor="let starship of starships">
+                    <li>{{starship.name}}</li>
+                </ng-container>
+            </ul>
+        </ng-container>
     </ng-container>
 </div>
