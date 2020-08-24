@@ -9,12 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './app.reducer';
 import { CategoryListComponent } from './category-list/category-list.component';
-import { PeopleComponent } from './people/people.component';
-import { PeopleModule } from './people/people.module';
+import { ItemModule } from './item/item.module';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 
 @NgModule({
-    declarations: [ AppComponent, CategoryListComponent, PeopleComponent ],
+    declarations: [ AppComponent, CategoryListComponent ],
     imports:
         [
             AppRoutingModule,
@@ -26,7 +25,7 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
                 maxAge: 25,
                 logOnly: environment.production,
             }),
-            PeopleModule,
+            ItemModule,
             UiComponentsModule,
         ],
     providers: [ ],

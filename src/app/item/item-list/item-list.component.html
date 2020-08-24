@@ -1,0 +1,6 @@
+<h2>{{category}}</h2>
+<div class="list">
+    <ng-container *ngFor="let item of (items$ | async) | keyvalue">
+        <app-item [item]="item.value"></app-item>
+    </ng-container>
+</div>

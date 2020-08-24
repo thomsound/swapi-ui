@@ -1,6 +1,0 @@
-<h2>PEOPLE</h2>
-<div class="list">
-    <ng-container *ngFor="let person of (characters$ | async) | keyvalue">
-        <app-people-item [item]="person.value"></app-people-item>
-    </ng-container>
-</div>

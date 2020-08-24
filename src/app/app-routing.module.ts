@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryListComponent } from './category-list/category-list.component';
-import { PeopleComponent } from './people/people.component';
-import { PeopleResolver } from './people/people.resolver';
+import { ItemListComponent } from './item/item-list/item-list.component';
+import { ItemListResolver } from './item/item-list/item-list.resolver';
 
 const routes: Routes = [
     {
@@ -10,9 +10,9 @@ const routes: Routes = [
         component: CategoryListComponent,
     },
     {
-        path: 'people',
-        component: PeopleComponent,
-        resolve: { PeopleResolver }
+        path: ':category',
+        component: ItemListComponent,
+        resolve: { ItemListResolver }
     }
 ];
 

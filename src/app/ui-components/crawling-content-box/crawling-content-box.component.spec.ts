@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PeopleItemComponent } from './people-item.component';
+import { CrawlingContentBoxComponent } from './crawling-content-box.component';
 
-describe('PeopleItemComponent', () => {
-  let component: PeopleItemComponent;
-  let fixture: ComponentFixture<PeopleItemComponent>;
+describe('CrawlingContentBoxComponent', () => {
+  let component: CrawlingContentBoxComponent;
+  let fixture: ComponentFixture<CrawlingContentBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PeopleItemComponent ]
+      declarations: [ CrawlingContentBoxComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PeopleItemComponent);
+    fixture = TestBed.createComponent(CrawlingContentBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

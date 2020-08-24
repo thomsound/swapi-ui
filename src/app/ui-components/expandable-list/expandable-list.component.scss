@@ -1,0 +1,15 @@
+.list {
+    border: solid 1px darkslategray;
+    border-radius: 6px;
+    padding: 6px;
+
+    &__item {
+        display: block;
+        margin: 3px 0;
+        border-bottom: solid 1px darken($color: darkslategray, $amount: .3); /* rgba(255, 215, 0, 0.4); */
+
+        &:last-child {
+            border: none;
+        }
+    }
+}

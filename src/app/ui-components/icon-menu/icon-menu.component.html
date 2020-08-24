@@ -1,5 +1,6 @@
 <div class="info-menu">
     <div class="icon-bar">
+        <ng-container *ngIf="config && config.entries"></ng-container>
         <ng-container *ngFor="let item of config.entries; let i = index">
             <div
                 class="icon-bar__item icon-bar-item"
@@ -14,7 +15,6 @@
         </ng-container>
         <div class="label-bar">
             <label
-                *ngIf="hover >= 0"
                 [class.label-bar--disabled]="hover >= 0 && config.entries[hover].disabled"
             >
                 {{hover >= 0

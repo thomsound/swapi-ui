@@ -1,0 +1,29 @@
+.container {
+    overflow: hidden;
+    display: block;
+    height: 100%;
+}
+.content {
+    display: block;
+    height: 100%;
+    font-weight: bold;
+    text-align: justify;
+    transform-origin: 50% 100%;
+    transform: perspective(250px) rotateX(30deg) translateY(100%);
+
+    animation: 30s cubic-bezier(.95, .5, 1, .8) 0s infinite crawl;
+}
+
+@keyframes crawl {
+    0% {
+        opacity: 1;
+        transform: perspective(120px) rotateX(30deg) translateY(100%);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: perspective(120px) rotateX(30deg) translateY(-300%);
+    }
+}

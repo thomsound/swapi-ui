@@ -30,8 +30,16 @@
     border-radius: 6px;
     padding: 3px;
 
+    &:hover {
+        cursor: not-allowed;
+    }
+
     &.active {
         border-color: violet;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
@@ -41,6 +49,7 @@
     font-family: monospace;
     font-size: 20px;
     padding-top: 6px;
+    color: darkgoldenrod;
 
     & > * {
         display: inline-block;

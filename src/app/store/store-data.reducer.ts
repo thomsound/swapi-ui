@@ -1,30 +1,29 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { environment } from '../../environments/environment';
 import { Categories } from '../category-list/categories';
-import { loadCharactersSucceededAction } from '../people/people.actions';
-import { loadSingleItemBatchByUrlsSucceededAction, loadSingleItemByUrlSucceededAction } from './actions';
+import Util from '../_util/util';
+import { loadItemsSucceededAction, loadSingleItemBatchByUrlsSucceededAction, loadSingleItemByUrlSucceededAction } from './actions';
 import { ApplicationState } from './application-state';
 import { StarWarsItem } from './star-wars-item';
 import { INITIAL_STORE_DATA_STATE, StoreData } from './store-data';
-
-
 
 export const storeSliceKey = 'storeData';
 
 const storeDataReducer = createReducer(
     INITIAL_STORE_DATA_STATE,
-    on(loadCharactersSucceededAction, (state, { characters }) => ({
-        ...state,
-        people: {
-            count: characters.count,
-            previous: characters.previous,
-            next: characters.next,
-            entries: {
-                ...state?.people?.entries,
-                ...characters.entries,
+    on(loadItemsSucceededAction, (state, { category, items }) => {
+        return {
+            ...state,
+            [category]: {
+                count: items.count,
+                previous: items.previous,
+                next: items.next,
+                entries: {
+                    ...state[category].entries,
+                    ...items.entries,
+                }
             }
         }
-    })),
+    }),
     on(loadSingleItemByUrlSucceededAction, (state, { item }) => addSingleItemToState(state, item)),
     on(loadSingleItemBatchByUrlsSucceededAction, (state, { items }) => {
         let tmpState = state;
@@ -36,7 +35,7 @@ const storeDataReducer = createReducer(
 );
 
 function addSingleItemToState(state: StoreData, item: StarWarsItem) {
-    const category = getCategory(item.url);
+    const category = Categories[Util.getCategoryByUrl(item.url)];
     return category === null ? state : {
         ...state,
         [category]: {
@@ -49,23 +48,19 @@ function addSingleItemToState(state: StoreData, item: StarWarsItem) {
     }
 }
 
-function getCategory(url: string) {
-    const categories = Object.values(Categories).map(c => c + '');
-    const baseUrl = environment.apiServer + environment.apiPrefix + '/';
-    const tail = url.substring(baseUrl.length - 1);
-    const category = tail.substring(0, tail.indexOf("/"));
-    return categories.includes(category) ? category : null;
-}
-
 export function reducer(state: StoreData | undefined, action: Action) {
     return storeDataReducer(state, action);
 }
 
 export const selectStoreData = createFeatureSelector<ApplicationState, StoreData>('storeData');
 
+export const selectItemListContainerByCategory = (category: string) => createSelector(selectStoreData, state => state && state[ category ] );
+export const selectItemEntriesByCategory = (category: string) => createSelector(selectItemListContainerByCategory(category), state => state?.entries);
+export const selectItemByCategory = (category: string) => createSelector(selectItemEntriesByCategory(category), state => state && state[ category ]);
+
 export const selectItemListContainerByUrl = (url: string) => createSelector(selectStoreData, state => {
     if (!url) return;
-    const category = getCategory(url);
+    const category = Categories[Util.getCategoryByUrl(url)];
     return state && state[ category ];
 })
 export const selectCategoryEntriesByUrl = (url: string) => createSelector(selectItemListContainerByUrl(url), state => state?.entries);

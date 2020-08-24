@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiServer: 'https://swapi.dev',
+    apiServer: 'http://swapi.dev',
     apiPrefix: '/api'
 };
 

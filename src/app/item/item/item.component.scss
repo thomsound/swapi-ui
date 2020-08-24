@@ -1,4 +1,4 @@
-.people-item {
+.item {
     display: inline-flex;
     flex-direction: column;
     border: solid 2px gold;
@@ -8,9 +8,23 @@
 
     & h3 {
         text-align: center;
+        cursor: pointer;
+
+        &:hover {
+            color: violet;
+        }
     }
 
     &__icon-menu {
         align-self: center;
     }
+
+    &__dropdown-container {
+        margin-top: 12px;
+    }
+}
+
+.dropdown-container {
+    max-height: 320px;
+    overflow: scroll;
 }

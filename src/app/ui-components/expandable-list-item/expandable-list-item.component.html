@@ -1,0 +1,6 @@
+<div class="item">
+    <div class="item__label label" (click)="emitLabelClicked()">{{label}}</div>
+    <div class="content" *ngIf="expand">
+        <ng-content></ng-content>
+    </div>
+</div>

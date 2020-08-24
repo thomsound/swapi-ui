@@ -1,0 +1,7 @@
+<div class="list">
+    <ng-container *ngFor="let item of items; let i = index">
+        <app-expandable-list-item class="list__item" [label]="item.name" [expand]="idxExpanded === i" (labelClicked)="expand(i)">
+            <app-specs-list [item]="item"></app-specs-list>
+        </app-expandable-list-item>
+    </ng-container>
+</div>

@@ -1,0 +1,34 @@
+<div class="item">
+    <h3 (click)="setSelected(-1)">{{item.name}}</h3>
+    <app-icon-menu
+        class="item__icon-menu"
+        [config]="iconMenuConfig"
+        [active]="selected"
+        (itemClicked)="iconMenuClick($event)"
+    ></app-icon-menu>
+
+    <app-specs-list *ngIf="selected < 0" [item]="item"></app-specs-list>
+
+    <ng-container *ngIf="selected >= 0 && iconMenuConfig.entries[selected].label as label">
+        <div class="item__dropdown-container dropdown-container">
+            <ng-container *ngIf="label === 'people' && (people$ | async) as people">
+                <app-expandable-list [items]="people"></app-expandable-list>
+            </ng-container>
+            <ng-container *ngIf="label === 'species' && (species$ | async) as species">
+                <app-expandable-list [items]="species"></app-expandable-list>
+            </ng-container>
+            <ng-container *ngIf="label === 'planets' && (planets$ | async) as planets">
+                <app-expandable-list [items]="planets"></app-expandable-list>
+            </ng-container>
+            <ng-container *ngIf="label === 'films' && (films$ | async) as films">
+                <app-expandable-list [items]="films"></app-expandable-list>
+            </ng-container>
+            <ng-container *ngIf="label === 'vehicles' && (vehicles$ | async) as vehicles">
+                <app-expandable-list [items]="vehicles"></app-expandable-list>
+            </ng-container>
+            <ng-container *ngIf="label === 'starships' && (starships$ | async) as starships">
+                <app-expandable-list [items]="starships"></app-expandable-list>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>
