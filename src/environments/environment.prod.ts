@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+    production: true,
+    apiProtocol: 'https:/',
+    apiServer: '/swapi.dev',
+    apiPrefix: '/api'
 };
