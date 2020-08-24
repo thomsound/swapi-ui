@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, filter, map, mergeMap, switchMap } from 'rxjs/operators';
 import { SwapiService } from '../swapi.service';
 import {
     loadItemsFailedAction,
@@ -14,6 +14,7 @@ import {
     loadSingleItemByUrlStartedAction,
     loadSingleItemByUrlSucceededAction
 } from './actions';
+import { StarWarsItem } from './star-wars-item';
 
 @Injectable()
 export class StoreDataEffects {
@@ -48,11 +49,12 @@ export class StoreDataEffects {
     loadSingelItemBatch$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
             ofType(loadSingleItemBatchByUrlsStartedAction),
-            mergeMap((action) =>
+            switchMap((action) =>
                 this.service
                     .getItemBatchByUrls(action.urls)
                     .pipe(
-                        map((items) => loadSingleItemBatchByUrlsSucceededAction({ items })),
+                        filter(value => !!value),
+                        map((items: StarWarsItem[]) => loadSingleItemBatchByUrlsSucceededAction({ items })),
                         catchError(() => of(loadSingleItemBatchByUrlsFailedAction())),
                     ),
             ),

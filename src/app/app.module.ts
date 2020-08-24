@@ -9,11 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './app.reducer';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { HomeComponent } from './home/home.component';
 import { ItemModule } from './item/item.module';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 
 @NgModule({
-    declarations: [ AppComponent, CategoryListComponent ],
+    declarations: [ AppComponent, CategoryListComponent, HomeComponent ],
     imports:
         [
             AppRoutingModule,

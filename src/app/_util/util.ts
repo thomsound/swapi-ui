@@ -3,8 +3,9 @@ import { Categories } from '../category-list/categories';
 
 export default class Util {
     static getCategoryByUrl(url: string): Categories {
-        const baseUrl = environment.apiServer + environment.apiPrefix;
-        const regex = new RegExp('(?<=' + baseUrl + '/).[^/]*');
+        const { apiProtocol, apiServer, apiPrefix } = environment;
+        const path = apiServer + apiPrefix;;
+        const regex = new RegExp('(?<=https?:/' + path + '/).[^/]*');
         const category = url.match(regex);
         return Categories[category[0]] || null;
     }

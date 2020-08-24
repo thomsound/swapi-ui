@@ -26,7 +26,7 @@ const storeDataReducer = createReducer(
     }),
     on(loadSingleItemByUrlSucceededAction, (state, { item }) => addSingleItemToState(state, item)),
     on(loadSingleItemBatchByUrlsSucceededAction, (state, { items }) => {
-        let tmpState = state;
+        let tmpState = { ...state };
         for (let i = 0; i < items.length; i++) {
             tmpState = addSingleItemToState(tmpState, items[i])
         }

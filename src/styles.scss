@@ -9,9 +9,4 @@ body {
 
 *[ng-reflect-router-link] {
     cursor: pointer;
-    transition: transform 0.3s;
-
-    &:hover {
-        transform: translateY(-3px);
-    }
 }

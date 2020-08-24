@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter, first, map, switchMap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { Categories } from './category-list/categories';
 import { Character, Film, Planet, Species, Starship, StarWarsItem, Vehicle } from "./store/star-wars-item";
@@ -15,12 +15,16 @@ import Util from './_util/util';
 })
 export class SwapiService {
 
-    baseUrl = environment.apiServer + environment.apiPrefix;
+
+    baseUrl: string;
 
     constructor(
         private httpClient: HttpClient,
         private store: Store
-    ) { }
+    ) {
+        const { apiProtocol, apiServer, apiPrefix } = environment;
+        this.baseUrl = apiProtocol + apiServer + apiPrefix;
+    }
 
     getItems(category: string, page?: string): Observable<itemListContainer<StarWarsItem>> {
         return this.httpClient.get(this.baseUrl + '/' + category, page ? { params: { page } } : {}).pipe(
@@ -46,7 +50,7 @@ export class SwapiService {
         urls.map(url => batch.push(
             this.getItemByUrl(url)
         ));
-        return combineLatest(batch);
+        return combineLatest(batch).pipe(first());
     }
 
     private parseItems(response: any): itemListContainer<StarWarsItem> {

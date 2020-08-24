@@ -1,0 +1,35 @@
+.logo-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../../assets/img/Star_Wars_Logo.svg');
+    background-position: 50%, 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: black;
+    cursor: pointer;
+}
+.menu-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: black;
+    padding: 30px;
+    box-shadow: 2px 0 100px 100px gold, inset 0 0 4px 5px goldenrod;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}
+@media (max-width: 580px) {
+    .menu-container {
+        background-color: rgba(0, 0, 0, .8);
+    }
+}
+.menu {
+    color: gold;
+    font-weight: bold;
+}

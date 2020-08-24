@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import Util from 'src/app/_util/util';
@@ -16,7 +16,7 @@ export class ItemListComponent {
     items$: Observable<{ [ key: string ]: StarWarsItem }>;
     category: string
 
-    constructor(private store: Store, private route: ActivatedRoute) {
+    constructor(private store: Store, private route: ActivatedRoute, private router: Router) {
         const category = route.snapshot.params.category;
 
         if (category && Util.isValidCategoryString(category)) {
