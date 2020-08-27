@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
     apiProtocol: 'https:/',
-    apiServer: '/swapi.dev',
+    apiServer: '/swapi-proxy.herokuapp.com',
     apiPrefix: '/api'
 };
