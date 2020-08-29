@@ -1,10 +1,4 @@
 interface Item {
-    peopleLabel: string;
-    filmsLabel: string;
-    planetsLabel: string;
-    speciesLabel: string;
-    vehiclesLabel: string;
-    starshipsLabel: string;
     category: string;
     created: string;
     edited: string;
@@ -20,10 +14,13 @@ export interface Character extends Item {
     mass: string;
     name: string;
     skin_color: string;
-    people: string[];
+    filmsLabel: string;
     films: string[];
+    speciesLabel: string;
     species: string[];
+    starshipsLabel: string;
     starships: string[];
+    vehiclesLabel: string;
     vehicles: string[];
 }
 
@@ -34,10 +31,15 @@ export interface Film extends Item {
     producer: string;
     release_date: Date;
     title: string;
+    peopleLabel: string;
     people: string[];
-    planets: string[];
+    planetsLabel: string;
+    plantes: string[];
+    speciesLabel: string;
     species: string[];
+    starshipsLabel: string;
     starships: string[];
+    vehiclesLabel: string;
     vehicles: string[];
 }
 
@@ -51,7 +53,9 @@ export interface Planet extends Item {
     climate: string;
     terrain: string;
     surface_water: string;
+    filmsLabel: string;
     films: string[];
+    peopleLabel: string;
     people: string[];
 }
 
@@ -65,8 +69,11 @@ export interface Species extends Item {
     language: string;
     name: string;
     skin_colors: string;
-    planets: string[];
+    planetsLabel: string;
+    plantes: string[];
+    filmsLabel: string;
     films: string[];
+    peopleLabel: string;
     people: string[];
 }
 
@@ -84,7 +91,9 @@ export interface Starship extends Item {
     name: string;
     passengers: string;
     starship_class: string;
+    filmsLabel: string;
     films: string[];
+    peopleLabel: string;
     people: string[];
 }
 
@@ -100,7 +109,9 @@ export interface Vehicle extends Item {
     name: string;
     passengers: string;
     vehicle_class: string;
+    filmsLabel: string;
     films: string[];
+    peopleLabel: string;
     people: string[];
 }
 

@@ -11,23 +11,8 @@
 
     <ng-container *ngIf="selected >= 0 && iconMenuConfig.entries[selected].id as id">
         <div class="item__dropdown-container dropdown-container">
-            <ng-container *ngIf="id === 'people' && (people$ | async) as people">
-                <app-expandable-list [items]="people"></app-expandable-list>
-            </ng-container>
-            <ng-container *ngIf="id === 'species' && (species$ | async) as species">
-                <app-expandable-list [items]="species"></app-expandable-list>
-            </ng-container>
-            <ng-container *ngIf="id === 'planets' && (planets$ | async) as planets">
-                <app-expandable-list [items]="planets"></app-expandable-list>
-            </ng-container>
-            <ng-container *ngIf="id === 'films' && (films$ | async) as films">
-                <app-expandable-list [items]="films"></app-expandable-list>
-            </ng-container>
-            <ng-container *ngIf="id === 'vehicles' && (vehicles$ | async) as vehicles">
-                <app-expandable-list [items]="vehicles"></app-expandable-list>
-            </ng-container>
-            <ng-container *ngIf="id === 'starships' && (starships$ | async) as starships">
-                <app-expandable-list [items]="starships"></app-expandable-list>
+            <ng-container *ngIf="(data[id] | async) as items">
+                <app-expandable-list [items]="items"></app-expandable-list>
             </ng-container>
         </div>
     </ng-container>
