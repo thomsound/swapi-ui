@@ -53,7 +53,7 @@ export class ItemComponent {
             const id = Categories.PEOPLE.toString();
             entries.push({
                 id,
-                label: item.peopleLabel,
+                label: item.peopleLabel || id,
                 iconId: 'group',
                 disabled: item.people.length <= 0,
             });
@@ -63,7 +63,7 @@ export class ItemComponent {
             const id = Categories.SPECIES.toString();
             entries.push({
                 id,
-                label: item.speciesLabel,
+                label: item.speciesLabel || id,
                 iconId: 'male',
                 disabled: item.species.length <= 0,
             });
@@ -73,7 +73,7 @@ export class ItemComponent {
             const id = Categories.PLANETS.toString();
             entries.push({
                 id,
-                label: item.planetsLabel,
+                label: item.planetsLabel || id,
                 iconId: 'star',
                 disabled: item.planets.length <= 0,
             });
@@ -83,7 +83,7 @@ export class ItemComponent {
             const id = Categories.FILMS.toString();
             entries.push({
                 id,
-                label: item.filmsLabel,
+                label: item.filmsLabel || id,
                 iconId: 'film',
                 disabled: item.films.length <= 0,
             });
@@ -93,7 +93,7 @@ export class ItemComponent {
             const id = Categories.VEHICLES.toString();
             entries.push({
                 id,
-                label: item.vehiclesLabel,
+                label: item.vehiclesLabel || id,
                 iconId: 'truck',
                 disabled: item.vehicles.length <= 0,
             });
@@ -103,7 +103,7 @@ export class ItemComponent {
             const id = Categories.STARSHIPS.toString();
             entries.push({
                 id,
-                label: item.starshipsLabel,
+                label: item.starshipsLabel || id,
                 iconId: 'space-shuttle',
                 disabled: item.starships.length <= 0,
             });

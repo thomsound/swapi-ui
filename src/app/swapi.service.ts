@@ -68,12 +68,6 @@ export class SwapiService {
     private parseItem(response: any) {
         const category = Categories[ Util.getCategoryByUrl(response.url) ];
         response.category = category;
-        response.peopleLabel = Categories.PEOPLE;
-        response.filmsLabel = Categories.FILMS;
-        response.planetsLabel = Categories.PLANETS;
-        response.speciesLabel = Categories.SPECIES;
-        response.vehiclesLabel = Categories.VEHICLES;
-        response.starshipsLabel = Categories.STARSHIPS;
         switch (category) {
             case Categories.FILMS.toString():
                 return this.parseFilm(response);
