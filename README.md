@@ -1,7 +1,7 @@
 # Star Wars Items
 
 This project is a work in progress angular study consuming the "The Star Wars API" (swapi).
-Check it out live via: [thomsound.github.io/swapi-ui/](thomsound.github.io/swapi-ui/)
+Check it out live via: [thomsound.github.io/swapi-ui/](https://thomsound.github.io/swapi-ui/)
 
 ## Development server
 
