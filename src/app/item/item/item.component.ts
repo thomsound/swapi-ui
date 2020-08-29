@@ -27,17 +27,17 @@ export class ItemComponent {
         private dispatcher: StoreDataDispatcher,
     ) { }
 
-    iconMenuClick(idx: number) {
+    iconMenuClick(idx: number): void {
         this.setSelected(idx);
         const category = this.iconMenuConfig.entries[ idx ].id;
         this.dispatcher.loadItemBatchByUrl(this.item[category]);
     }
 
-    setSelected(idx: number) {
+    setSelected(idx: number): void {
         this.selected = idx;
     }
 
-    private addData<T extends StarWarsItem>(id: string, item: T) {
+    private addData<T extends StarWarsItem>(id: string, item: T): void {
         this.data[id] = combineLatest(
             <Observable<T>>this.item[id].map(url => this.store.pipe(select(selectItemByUrl(url))))
         ).pipe(
@@ -45,7 +45,7 @@ export class ItemComponent {
         );
     }
 
-    private init(item: any) {
+    private init(item: any): void {
         this.item = item;
         let entries: IconMenuItem[] = [];
 

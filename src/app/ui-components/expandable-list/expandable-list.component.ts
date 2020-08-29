@@ -11,7 +11,7 @@ export class ExpandableListComponent {
 
     idxExpanded = -1;
 
-    expand(idx: number) {
+    expand(idx: number): void {
         this.idxExpanded = idx === this.idxExpanded ? -1 : idx;
     }
 }

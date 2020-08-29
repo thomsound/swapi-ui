@@ -61,5 +61,8 @@ export class StoreDataEffects {
         ),
     );
 
-    constructor(private actions$: Actions, private service: SwapiService) {}
+    constructor(
+        private actions$: Actions,
+        private service: SwapiService
+    ) { }
 }

@@ -65,7 +65,7 @@ export class SwapiService {
         }
     }
 
-    private parseItem(response: any) {
+    private parseItem(response: any): StarWarsItem {
         const category = Categories[ Util.getCategoryByUrl(response.url) ];
         response.category = category;
         switch (category) {

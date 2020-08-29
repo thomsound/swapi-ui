@@ -34,7 +34,7 @@ const storeDataReducer = createReducer(
     }),
 );
 
-function addSingleItemToState(state: StoreData, item: StarWarsItem) {
+function addSingleItemToState(state: StoreData, item: StarWarsItem): StoreData {
     const category = Categories[Util.getCategoryByUrl(item.url)];
     return category === null ? state : {
         ...state,
@@ -48,7 +48,7 @@ function addSingleItemToState(state: StoreData, item: StarWarsItem) {
     }
 }
 
-export function reducer(state: StoreData | undefined, action: Action) {
+export function reducer(state: StoreData | undefined, action: Action): StoreData {
     return storeDataReducer(state, action);
 }
 

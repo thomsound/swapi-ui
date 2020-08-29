@@ -9,7 +9,7 @@ export default class Util {
         return Categories[category[2]] || null;
     }
 
-    static isValidCategoryString(category: string) {
+    static isValidCategoryString(category: string): boolean {
         return Object.values(Categories).includes(category);
     }
 

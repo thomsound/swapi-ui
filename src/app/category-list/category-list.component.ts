@@ -12,7 +12,7 @@ export class CategoryListComponent {
         private router: Router
     ) {}
 
-    navigate(category: string) {
+    navigate(category: string): void {
         this.router.navigate([ category ]);
     }
 }
