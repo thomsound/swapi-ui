@@ -1,8 +1,18 @@
-
-export interface Character {
-    birth_year: string;
+interface Item {
+    peopleLabel: string;
+    filmsLabel: string;
+    planetsLabel: string;
+    speciesLabel: string;
+    vehiclesLabel: string;
+    starshipsLabel: string;
+    category: string;
     created: string;
     edited: string;
+    url: string;
+}
+
+export interface Character extends Item {
+    birth_year: string;
     eye_color: string;
     gender: string;
     hair_color: string;
@@ -10,7 +20,6 @@ export interface Character {
     mass: string;
     name: string;
     skin_color: string;
-    url: string;
     people: string[];
     films: string[];
     species: string[];
@@ -18,16 +27,13 @@ export interface Character {
     vehicles: string[];
 }
 
-export interface Film {
-    created: string;
+export interface Film extends Item {
     director: string;
-    edited: string;
     episode_id: number;
     opening_crawl: string;
     producer: string;
     release_date: Date;
     title: string;
-    url: string;
     people: string[];
     planets: string[];
     species: string[];
@@ -35,7 +41,7 @@ export interface Film {
     vehicles: string[];
 }
 
-export interface Planet {
+export interface Planet extends Item {
     name: string;
     diameter: string;
     rotation_period: string;
@@ -45,38 +51,30 @@ export interface Planet {
     climate: string;
     terrain: string;
     surface_water: string;
-    url: string;
-    created: string;
-    edited: string;
     films: string[];
     people: string[];
 }
 
-export interface Species {
+export interface Species extends Item {
     average_height: string;
     average_lifespan: string;
     classification: string;
-    created: string;
     designation: string;
-    edited: string;
     eye_colors: string;
     hair_colors: string;
     language: string;
     name: string;
     skin_colors: string;
-    url: string;
     planets: string[];
     films: string[];
     people: string[];
 }
 
-export interface Starship {
+export interface Starship extends Item {
     cargo_capacity: string;
     consumables: string;
     cost_in_credits: string;
-    created: string;
     crew: string;
-    edited: string;
     hyperdrive_rating: string;
     length: string;
     manufacturer: string;
@@ -86,29 +84,27 @@ export interface Starship {
     name: string;
     passengers: string;
     starship_class: string;
-    url: string;
     films: string[];
     people: string[];
 }
 
-export interface Vehicle {
+export interface Vehicle extends Item {
     cargo_capacity: string;
     consumables: string;
     cost_in_credits: string;
-    created: string;
     crew: string;
-    edited: string;
     length: string;
     manufacturer: string;
     max_atmosphering_speed: string;
     model: string;
     name: string;
     passengers: string;
-    url: string;
     vehicle_class: string;
     films: string[];
     people: string[];
 }
+
+
 
 export type StarWarsItem = Character
     | Film

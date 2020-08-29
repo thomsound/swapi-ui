@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable, of } from 'rxjs';
 import { filter, first, map, switchMap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
 import { Categories } from './category-list/categories';
 import { Character, Film, Planet, Species, Starship, StarWarsItem, Vehicle } from "./store/star-wars-item";
 import { itemListContainer } from "./store/store-data";
@@ -22,8 +21,7 @@ export class SwapiService {
         private httpClient: HttpClient,
         private store: Store
     ) {
-        const { apiProtocol, apiServer, apiPrefix } = environment;
-        this.baseUrl = apiProtocol + apiServer + apiPrefix;
+        this.baseUrl = Util.getBaseUrl();
     }
 
     getItems(category: string, page?: string): Observable<itemListContainer<StarWarsItem>> {
@@ -68,7 +66,14 @@ export class SwapiService {
     }
 
     private parseItem(response: any) {
-        const category = Categories[Util.getCategoryByUrl(response.url)];
+        const category = Categories[ Util.getCategoryByUrl(response.url) ];
+        response.category = category;
+        response.peopleLabel = Categories.PEOPLE;
+        response.filmsLabel = Categories.FILMS;
+        response.planetsLabel = Categories.PLANETS;
+        response.speciesLabel = Categories.SPECIES;
+        response.vehiclesLabel = Categories.VEHICLES;
+        response.starshipsLabel = Categories.STARSHIPS;
         switch (category) {
             case Categories.FILMS.toString():
                 return this.parseFilm(response);
@@ -89,13 +94,16 @@ export class SwapiService {
 
     private parseCharacter(response: any): Character {
         response.planets = response.homeworld ? [ response.homeworld ] : [];
+        response.planetsLabel = 'homeworld';
         delete response.homeworld;
         return response;
     }
 
     private parseFilm(response: any): Film {
         response.people = response.characters;
+        response.peopleLabel = 'characters';
         delete response.characters;
+
         response.name = response.title;
         delete response.title;
         return response;
@@ -103,24 +111,28 @@ export class SwapiService {
 
     private parseStarship(response: any): Starship {
         response.people = response.pilots;
+        response.peopleLabel = 'pilots';
         delete response.pilots;
         return response;
     }
 
     private parseVehicle(response: any): Vehicle {
         response.people = response.pilots;
+        response.peopleLabel = 'pilots';
         delete response.pilots;
         return response;
     }
 
     private parseSpecies(response: any): Species {
         response.planets = response.homeworld ? [ response.homeworld ] : [];
+        response.planetsLabel = 'homeworld';
         delete response.homeworld;
         return response;
     }
 
     private parsePlanet(response: any): Planet {
         response.people = response.residents;
+        response.peopleLabel = 'residents';
         delete response.residents;
         return response;
     }

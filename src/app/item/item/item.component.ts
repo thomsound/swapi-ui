@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { Categories } from 'src/app/category-list/categories';
 import { Character, Film, Planet, Species, Starship, Vehicle } from 'src/app/store/star-wars-item';
 import { selectItemByUrl } from 'src/app/store/store-data.reducer';
 import { IconMenuConfig, IconMenuItem } from 'src/app/ui-components/icon-menu/icon-menu-config';
-import { Categories } from '../../category-list/categories';
 import { StoreDataDispatcher } from '../../store/storeData.dispatcher';
 
 @Component({
@@ -34,7 +34,7 @@ export class ItemComponent {
 
     iconMenuClick(idx: number) {
         this.setSelected(idx);
-        const category = this.iconMenuConfig.entries[ idx ].label;
+        const category = this.iconMenuConfig.entries[ idx ].id;
         this.dispatcher.loadItemBatchByUrl(this.item[category]);
     }
 
@@ -48,7 +48,8 @@ export class ItemComponent {
 
         if (item.people) {
             entries.push({
-                label: Categories.PEOPLE.toString(),
+                id: Categories.PEOPLE.toString(),
+                label: item.peopleLabel,
                 iconId: 'group',
                 disabled: item.people.length <= 0,
             });
@@ -60,7 +61,8 @@ export class ItemComponent {
         }
         if (item.species) {
             entries.push({
-                label: Categories.SPECIES.toString(),
+                id: Categories.SPECIES.toString(),
+                label: item.speciesLabel,
                 iconId: 'male',
                 disabled: item.species.length <= 0,
             });
@@ -72,7 +74,8 @@ export class ItemComponent {
         }
         if (item.planets) {
             entries.push({
-                label: Categories.PLANETS.toString(),
+                id: Categories.PLANETS.toString(),
+                label: item.planetsLabel,
                 iconId: 'star',
                 disabled: item.planets.length <= 0,
             });
@@ -84,7 +87,8 @@ export class ItemComponent {
         }
         if (item.films) {
             entries.push({
-                label: Categories.FILMS.toString(),
+                id: Categories.FILMS.toString(),
+                label: item.filmsLabel,
                 iconId: 'film',
                 disabled: item.films.length <= 0,
             });
@@ -96,7 +100,8 @@ export class ItemComponent {
         }
         if (item.vehicles) {
             entries.push({
-                label: Categories.VEHICLES.toString(),
+                id: Categories.VEHICLES.toString(),
+                label: item.vehiclesLabel,
                 iconId: 'truck',
                 disabled: item.vehicles.length <= 0,
             });
@@ -108,7 +113,8 @@ export class ItemComponent {
         }
         if (item.starships) {
             entries.push({
-                label: Categories.STARSHIPS.toString(),
+                id: Categories.STARSHIPS.toString(),
+                label: item.starshipsLabel,
                 iconId: 'space-shuttle',
                 disabled: item.starships.length <= 0,
             });

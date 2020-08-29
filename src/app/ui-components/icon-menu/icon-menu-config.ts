@@ -4,7 +4,8 @@ export interface IconMenuConfig {
 }
 
 export interface IconMenuItem {
-    label: string;
+    id: string;
+    label?: string;
     iconId: string;
     disabled?: boolean;
 }

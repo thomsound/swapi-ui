@@ -9,10 +9,6 @@ import {
 export class StoreDataDispatcher {
     constructor(private store: Store) {}
 
-    // loadCharacters(page?: string): void {
-    //     this.store.dispatch(loadCharactersStartedAction(page ? { page } : {}));
-    // }
-
     loadItems(category: string, page?: string): void {
         this.store.dispatch(loadItemsStartedAction({ category, page }));
     }
