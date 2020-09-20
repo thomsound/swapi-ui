@@ -17,7 +17,7 @@ export class StoreDataDispatcher {
         this.store.dispatch(loadSingleItemByUrlStartedAction({ url }));
     }
 
-    loadItemBatchByUrl(urls: string[]): void {
+    loadItemBatchByUrls(urls: string[]): void {
         this.store.dispatch(loadSingleItemBatchByUrlsStartedAction({ urls }));
     }
 }

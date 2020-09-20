@@ -12,6 +12,6 @@ export class ExpandableListItemComponent {
     @Output() labelClicked = new EventEmitter<void>();
 
     emitLabelClicked(): void {
-        this.labelClicked.emit()
+        this.labelClicked.emit();
     }
 }

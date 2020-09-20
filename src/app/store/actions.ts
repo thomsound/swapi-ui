@@ -1,12 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { StarWarsItem } from '../store/star-wars-item';
-import { itemListContainer } from './store-data';
+import { ItemListContainer } from './store-data';
 
 
 export const loadItemsStartedAction = createAction('[Global] Load Items Started', props<{ category: string, page?: string }>());
 export const loadItemsSucceededAction = createAction(
     '[Global] Load Items Success',
-    props<{ category: string, items: itemListContainer<StarWarsItem> }>(),
+    props<{ category: string, items: ItemListContainer<StarWarsItem> }>(),
 );
 export const loadItemsFailedAction = createAction('[Global] Load Items Error');
 

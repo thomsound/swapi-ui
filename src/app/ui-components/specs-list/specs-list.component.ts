@@ -12,7 +12,7 @@ export class SpecsListComponent {
     @Input('item') set setItem(item: StarWarsItem) {
         this.item = item;
         this.category = Util.getCategoryByUrl(item.url);
-    };
+    }
 
     item: StarWarsItem;
     category: Categories;

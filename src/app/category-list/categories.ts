@@ -1,8 +1,8 @@
 export enum Categories {
-    FILMS = <any>'films',
-    PEOPLE = <any>'people',
-    PLANETS = <any>'planets',
-    SPECIES = <any>'species',
-    STARSHIPS = <any>'starships',
-    VEHICLES = <any>'vehicles',
+    FILMS = 'films' as any,
+    PEOPLE = 'people' as any,
+    PLANETS = 'planets' as any,
+    SPECIES = 'species' as any,
+    STARSHIPS = 'starships' as any,
+    VEHICLES = 'vehicles' as any,
 }

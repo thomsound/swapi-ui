@@ -14,7 +14,7 @@ import { StoreDataDispatcher } from '../../store/storeData.dispatcher';
     styleUrls: [ './item.component.scss' ],
 })
 export class ItemComponent {
-    @Input('item') set setItem(item: any) { this.init(item) };
+    @Input('item') set setItem(item: any) { this.init(item); }
 
     iconMenuConfig: IconMenuConfig;
     item: any;
@@ -30,24 +30,16 @@ export class ItemComponent {
     iconMenuClick(idx: number): void {
         this.setSelected(idx);
         const category = this.iconMenuConfig.entries[ idx ].id;
-        this.dispatcher.loadItemBatchByUrl(this.item[category]);
+        this.dispatcher.loadItemBatchByUrls(this.item[category]);
     }
 
     setSelected(idx: number): void {
         this.selected = idx;
     }
 
-    private addData<T extends StarWarsItem>(id: string, item: T): void {
-        this.data[id] = combineLatest(
-            <Observable<T>>this.item[id].map(url => this.store.pipe(select(selectItemByUrl(url))))
-        ).pipe(
-            filter((items: T[]) => items && items.length > 0 && !items.some(item => !item)),
-        );
-    }
-
     private init(item: any): void {
         this.item = item;
-        let entries: IconMenuItem[] = [];
+        const entries: IconMenuItem[] = [];
 
         if (item.people) {
             const id = Categories.PEOPLE.toString();
@@ -57,7 +49,7 @@ export class ItemComponent {
                 iconId: 'group',
                 disabled: item.people.length <= 0,
             });
-            this.addData(id, <Character>item);
+            this.addData(id, item as Character);
         }
         if (item.species) {
             const id = Categories.SPECIES.toString();
@@ -67,7 +59,7 @@ export class ItemComponent {
                 iconId: 'male',
                 disabled: item.species.length <= 0,
             });
-            this.addData(id, <Species>item);
+            this.addData(id, item as Species);
         }
         if (item.planets) {
             const id = Categories.PLANETS.toString();
@@ -77,7 +69,7 @@ export class ItemComponent {
                 iconId: 'star',
                 disabled: item.planets.length <= 0,
             });
-            this.addData(id, <Planet>item);
+            this.addData(id, item as Planet);
         }
         if (item.films) {
             const id = Categories.FILMS.toString();
@@ -87,7 +79,7 @@ export class ItemComponent {
                 iconId: 'film',
                 disabled: item.films.length <= 0,
             });
-            this.addData(id, <Film>item);
+            this.addData(id, item as Film);
         }
         if (item.vehicles) {
             const id = Categories.VEHICLES.toString();
@@ -97,7 +89,7 @@ export class ItemComponent {
                 iconId: 'truck',
                 disabled: item.vehicles.length <= 0,
             });
-            this.addData(id, <Vehicle>item);
+            this.addData(id, item as Vehicle);
         }
         if (item.starships) {
             const id = Categories.STARSHIPS.toString();
@@ -107,9 +99,17 @@ export class ItemComponent {
                 iconId: 'space-shuttle',
                 disabled: item.starships.length <= 0,
             });
-            this.addData(id, <Starship>item);
+            this.addData(id, item as Starship);
         }
 
         this.iconMenuConfig = { defaultLabel: 'characteristics', entries };
+    }
+
+    private addData<T extends StarWarsItem>(id: string, item: T): void {
+        this.data[id] = combineLatest([
+            this.item[id].map(url => this.store.pipe(select(selectItemByUrl(url)))) as Observable<T>
+        ]).pipe(
+            filter((items: T[]) => items && items.length > 0 && !items.some(currentItem => !currentItem)),
+        );
     }
 }

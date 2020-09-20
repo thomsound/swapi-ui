@@ -4,8 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable, of } from 'rxjs';
 import { filter, first, map, switchMap } from 'rxjs/operators';
 import { Categories } from './category-list/categories';
-import { Character, Film, Planet, Species, Starship, StarWarsItem, Vehicle } from "./store/star-wars-item";
-import { itemListContainer } from "./store/store-data";
+import { Character, Film, Planet, Species, Starship, StarWarsItem, Vehicle } from './store/star-wars-item';
+import { ItemListContainer } from './store/store-data';
 import { selectItemByUrl } from './store/store-data.reducer';
 import Util from './_util/util';
 
@@ -24,7 +24,7 @@ export class SwapiService {
         this.baseUrl = Util.getBaseUrl();
     }
 
-    getItems(category: string, page?: string): Observable<itemListContainer<StarWarsItem>> {
+    getItems(category: string, page?: string): Observable<ItemListContainer<StarWarsItem>> {
         return this.httpClient.get(this.baseUrl + '/' + category, page ? { params: { page } } : {}).pipe(
             filter(res => res.hasOwnProperty('results')),
             map(res => this.parseItems(res))
@@ -36,7 +36,7 @@ export class SwapiService {
             switchMap(item =>
                 !item
                     ? this.httpClient.get(url).pipe(
-                        map(item => this.parseItem(item))
+                        map(currentItem => this.parseItem(currentItem))
                     )
                     : of(item)
             )
@@ -51,9 +51,9 @@ export class SwapiService {
         return combineLatest(batch).pipe(first());
     }
 
-    private parseItems(response: any): itemListContainer<StarWarsItem> {
+    private parseItems(response: any): ItemListContainer<StarWarsItem> {
         const { count, next, previous, results } = response;
-        let itemMap: { [ key: string ]: StarWarsItem } = {};
+        const itemMap: { [ key: string ]: StarWarsItem } = {};
         results.forEach(element => {
             itemMap[ element?.url ] = this.parseItem(element);
         });
@@ -62,7 +62,7 @@ export class SwapiService {
             next,
             previous,
             entries: itemMap
-        }
+        };
     }
 
     private parseItem(response: any): StarWarsItem {

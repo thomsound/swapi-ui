@@ -14,7 +14,7 @@ import { selectItemEntriesByCategory, selectPeopleEntries } from '../../store/st
 export class ItemListComponent {
 
     items$: Observable<{ [ key: string ]: StarWarsItem }>;
-    category: string
+    category: string;
 
     constructor(private store: Store, private route: ActivatedRoute, private router: Router) {
         const category = route.snapshot.params.category;

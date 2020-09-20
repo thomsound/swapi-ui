@@ -16,14 +16,14 @@ export class IconMenuComponent {
 
     menuItemHovered(idx: number): void {
         this.hover = idx;
-        if (idx < 0) return;
+        if (idx < 0) { return; }
         this.itemHovered.emit(idx);
     }
 
     menuItemClicked(idx: number): void {
-        if (this.config.entries[ idx ].disabled) return;
+        if (this.config.entries[ idx ].disabled) { return; }
         this.active = idx;
-        if (idx < 0) return;
+        if (idx < 0) { return; }
         this.itemClicked.emit(idx);
     }
 }
